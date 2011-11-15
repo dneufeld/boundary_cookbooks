@@ -52,9 +52,9 @@ def download_certificate_request(new_resource)
       auth = auth_encode()
       base_url = build_url(new_resource, :certificates)
       headers = {"Authorization" => "Basic #{auth}"}
-
-      cert_response = http_get_request("#{base_url}/cert.pem", headers)
-
+      
+      cert_response = http_request(:get, "#{base_url}/cert.pem", headers)
+      
       if cert_response
         file "#{node[:boundary][:bprobe][:etc][:path]}/cert.pem" do
           mode 0600
