@@ -249,12 +249,13 @@ module Boundary
     end
 
     def bad_response?(method, url, response)
-      if response.status >= 400
-        Chef::Application.fatal!("Got a #{response.status} for #{method} to #{url}")
-        true
-      else
-        false
-      end
+       case response
+       when Net::HTTPSuccess
+         false
+       else
+         true 
+        Chef::Log.error("Got a #{response.code} for #{method} to #{url}")
+       end
     end
 
   end
