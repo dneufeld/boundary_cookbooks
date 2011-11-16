@@ -18,10 +18,6 @@
 # limitations under the License.
 #
 
-# excon and json for meter lwrp
-gem_package "excon"
-gem_package "json"
-
 case node[:platform]
 when "redhat", "centos"
 
@@ -45,6 +41,13 @@ when "debian", "ubuntu"
     components ["universe"]
     key "https://apt.boundary.com/APT-GPG-KEY-Boundary"
     action :add
+  end
+
+  cookbook_file "#{Chef::Config[:file_cache_path]}/cacert.pem" do
+    source "cacert.pem"
+    mode 0600
+    owner "root"
+    group "root"
   end
 
 end
