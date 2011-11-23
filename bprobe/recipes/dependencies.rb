@@ -52,3 +52,9 @@ when "debian", "ubuntu"
 
 end
 
+cookbook_file "#{Chef::Config[:file_cache_path]}/cacert.pem" do
+  source "cacert.pem"
+  mode 0600
+  owner "root"
+  group "root"
+end
