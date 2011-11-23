@@ -43,13 +43,6 @@ when "debian", "ubuntu"
     action :add
   end
 
-  cookbook_file "#{Chef::Config[:file_cache_path]}/cacert.pem" do
-    source "cacert.pem"
-    mode 0600
-    owner "root"
-    group "root"
-  end
-
 end
 
 cookbook_file "#{Chef::Config[:file_cache_path]}/cacert.pem" do
